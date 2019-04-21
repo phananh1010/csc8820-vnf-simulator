@@ -46,10 +46,10 @@ class Simulator:
         hostname, port, chain, role, nb_ip, nb_port = self.parse_metadata(dat)
         nb_port = int(nb_port)
         port = int(port)
-        try:
-            os.system('rm {}'.format(self._meta_file + '.*'))
-        except Exception, e:
-            mylog.log(e);  
+        #try:
+        #    os.system('rm {}'.format(self._meta_file + '.*'))
+        #except Exception, e:
+        #    mylog.log(e);  
         return hostname, port, chain, role, nb_ip, nb_port    
     
     def set_service(self, service):
