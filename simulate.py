@@ -4,7 +4,7 @@ import sink
 import os
 import header
 import mylog
-
+import socket
 
 class Simulator:
     _meta_IP = None#'127.0.0.1', 6789
