@@ -1,5 +1,6 @@
 import socket
 import relay
+import mylog
 
 class Source(relay.Relayer):
     _sock_send = None
@@ -9,6 +10,7 @@ class Source(relay.Relayer):
         self._sock_send = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     
     def send_packet(self):
+        mylog.log('SENDING message to {} - {}'.format(self._nb_ip, self._nb_port))
         MESSAGE = "hello"
         self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
         return
