@@ -26,7 +26,7 @@ class Relayer(object):
 
     
     def relay(self):
-        mylog.log("LISTENING AT {} - {}".format(self._nb_ip, self._nb_port))
+        mylog.log("LISTENING AT {}".format(self._port))
         while True:
             data, addr = self._sock_recv.recvfrom(1024) # buffer size is 1024 bytes
             self._sock_send.sendto(data, (self._nb_ip, self._nb_port))
