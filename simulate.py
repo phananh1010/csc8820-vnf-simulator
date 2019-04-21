@@ -44,7 +44,7 @@ class Simulator:
         #os.system('wget {}:{}/{}'.format(self._meta_IP, self._meta_port, self._meta_file))
         dat = open('./{}'.format(self._meta_file)).read()
         hostname, port, chain, role, nb_ip, nb_port = self.parse_metadata(dat)
-        IP, hostname = get_hostname();
+        IP, hostname = self.get_hostname();
         nb_port = int(nb_port)
         port = int(port)
         #try:
