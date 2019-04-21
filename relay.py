@@ -8,18 +8,20 @@ class Relayer(object):
     _buff = None
     _sock = None
     
+    _ip = None
     _port = None
     _nb_ip = None
     _nb_port = None
 
     
-    def __init__(self, port, nb_ip, nb_port):
+    def __init__(self, ip, port, nb_ip, nb_port):
         self._buff = []
+        self._ip = ip
         self._port = port
         self._nb_ip, self._nb_port = nb_ip, nb_port
         
         self._sock_recv = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._sock_recv.bind((header.LOCAL_IP, self._port))
+        self._sock_recv.bind((self._ip, self._port))
         
         self._sock_send = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
