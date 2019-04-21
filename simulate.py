@@ -1,13 +1,17 @@
 import relay
+import source
+import sink
 import os
 import header
 import mylog
+
 
 class Simulator:
     _meta_IP = None#'127.0.0.1', 6789
     _meta_port = None
     _port = None #4567
-    _meta_file = header.FILENAME_METADATA   
+    _meta_file = header.FILENAME_METADATA  
+    _service = None
     
     def __init__(self, meta_IP, meta_port, local_port):
         self._meta_IP = meta_IP
@@ -40,17 +44,37 @@ class Simulator:
         os.system('wget {}:{}/{}'.format(self._meta_IP, self._meta_port, self._meta_file))
         dat = open('./{}'.format(self._meta_file)).read()
         hostname, port, chain, role, nb_ip, nb_port = self.parse_metadata(dat)
-        nbs_port = int(nb_port)
+        nb_port = int(nb_port)
         port = int(port)
+        try:
+            os.system('rm {}'.format(self._meta_file + '.*'))
+        except Exception, e:
+            mylog.log(e);  
         return hostname, port, chain, role, nb_ip, nb_port    
+    
+    def set_service(self, service):
+        self._service = service
         
-    def run():
-        LOCAL_PORT = 4567
+    def release_service(self):
+        self._service.release()
         
-        hostname, port, chain, role, nb_ip, nb_port = rl.get_metainfo()
-        mylog.log('GATHER META DATA SUCCESS, Role: {}, Chain: {}, Neighbor: {}'.format(role, chain, (nb_ip, nb_port)))
-        #if role == source, create source object
-        #if role == sink, create sink object
-        #if role == relay, create relayer
-        #rl = relay.Relayer(LOCAL_PORT)
-        #then, execute the 
+    def run(self):
+        #create the service for given port
+        hostname, port, chain, role, nb_ip, nb_port = self.get_metainfo()
+        if role == header.ROLE_SOURCE:
+            service = source.Source(port, nb_ip, nb_port)
+            self.set_service(service)
+            service.send_packet()
+        elif role == header.ROLE_SINK:
+            service = sink.Sink(port)
+            self.set_service(service)
+            service.recv()
+        elif role == header.ROLE_RELAYER:
+            service = relay.Relayer(port, nb_ip, nb_port)
+            self.set_service(service)
+            service.relay()  
+        else:
+            mylog.log('ERROR, role not matched')
+            raise
+
+        return service

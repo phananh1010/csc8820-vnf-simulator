@@ -13,5 +13,5 @@ class Source(relay.Relayer):
         self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
         return
     
-    def release():
+    def release(self):
         self._sock_send.close()
