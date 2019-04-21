@@ -44,13 +44,14 @@ class Simulator:
         #os.system('wget {}:{}/{}'.format(self._meta_IP, self._meta_port, self._meta_file))
         dat = open('./{}'.format(self._meta_file)).read()
         hostname, port, chain, role, nb_ip, nb_port = self.parse_metadata(dat)
+        IP, hostname = get_hostname();
         nb_port = int(nb_port)
         port = int(port)
         #try:
         #    os.system('rm {}'.format(self._meta_file + '.*'))
         #except Exception, e:
         #    mylog.log(e);  
-        return hostname, port, chain, role, nb_ip, nb_port    
+        return hostname, IP, port, chain, role, nb_ip, nb_port  
     
     def set_service(self, service):
         self._service = service
@@ -60,17 +61,17 @@ class Simulator:
         
     def run(self):
         #create the service for given port
-        hostname, port, chain, role, nb_ip, nb_port = self.get_metainfo()
+        hostname, IP, port, chain, role, nb_ip, nb_port = self.get_metainfo()
         if role == header.ROLE_SOURCE:
-            service = source.Source(port, nb_ip, nb_port)
+            service = source.Source(IP, port, nb_ip, nb_port)
             self.set_service(service)
             service.send_packet()
         elif role == header.ROLE_SINK:
-            service = sink.Sink(port)
+            service = sink.Sink(IP, port)
             self.set_service(service)
             service.recv()
         elif role == header.ROLE_RELAYER:
-            service = relay.Relayer(port, nb_ip, nb_port)
+            service = relay.Relayer(IP, port, nb_ip, nb_port)
             self.set_service(service)
             service.relay()  
         else:
