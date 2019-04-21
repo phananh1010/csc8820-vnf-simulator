@@ -41,7 +41,7 @@ class Simulator:
         
     def get_metainfo(self):
         #retrieve the meta infor from master server
-        os.system('wget {}:{}/{}'.format(self._meta_IP, self._meta_port, self._meta_file))
+        #os.system('wget {}:{}/{}'.format(self._meta_IP, self._meta_port, self._meta_file))
         dat = open('./{}'.format(self._meta_file)).read()
         hostname, port, chain, role, nb_ip, nb_port = self.parse_metadata(dat)
         nb_port = int(nb_port)
