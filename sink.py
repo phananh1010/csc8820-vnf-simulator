@@ -12,6 +12,7 @@ class Sink(relay.Relayer):
         self._sock_recv.bind((header.LOCAL_IP, self._port))
         
     def recv(self):
+        mylog.log("LISTENING AT {} - {}".format(self._nb_ip, self._nb_port))        
         while True:
             data, addr = self._sock_recv.recvfrom(1024) # buffer size is 1024 bytes
             mylog.log("DEBUG: RECEIVED - {} FROM - {}".format(data, addr))

@@ -17,13 +17,23 @@ class Relayer(object):
         self._buff = []
         self._port = port
         self._nb_ip, self._nb_port = nb_ip, nb_port
+        
+        self._sock_recv = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self._sock_recv.bind((header.LOCAL_IP, self._port))
+        
+        self._sock_send = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
     
-    def start_server(self):
-        self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
-        self._sock.bind((UDP_IP, UDP_PORT))
-        
     def relay(self):
+        mylog.log("LISTENING AT {} - {}".format(self._nb_ip, self._nb_port))
+        while True:
+            data, addr = self._sock_recv.recvfrom(1024) # buffer size is 1024 bytes
+            self._sock_send.sendto(data, (self._nb_ip, self._nb_port))
+            mylog.log("DEBUG: RELAYED - {} FROM - {} TO - {}".format(data, addr, (self._nb_ip, self._nb_port)))
         
+        
+    def release(self):
+        self._sock_send.close()
+        self._sock_recv.close()
         return
