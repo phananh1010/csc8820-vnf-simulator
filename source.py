@@ -18,7 +18,8 @@ class Source(relay.Relayer):
             self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
             
             with open('source.txt', 'w') as f:
-                print >> f, 'SEND {} {}'.format(mylog.mtime, MESSAGE)     # Python 2.x
+                print >> f, 'SEND {} {}'.format(mylog.mtime(), MESSAGE)     # Python 2.x
+                f.flush()
             
         return
     
