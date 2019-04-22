@@ -59,13 +59,13 @@ class Simulator:
     def release_service(self):
         self._service.release()
         
-    def run(self):
+    def run(self, step=100):
         #create the service for given port
         hostname, IP, port, chain, role, nb_ip, nb_port = self.get_metainfo()
         if role == header.ROLE_SOURCE:
             service = source.Source(IP, port, nb_ip, nb_port)
             self.set_service(service)
-            service.send_packet()
+            service.send_packet(step)
         elif role == header.ROLE_SINK:
             service = sink.Sink(IP, port)
             self.set_service(service)
