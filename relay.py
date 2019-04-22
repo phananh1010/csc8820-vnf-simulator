@@ -30,8 +30,8 @@ class Relayer(object):
     def relay(self):
         mylog.log("LISTENING AT {}".format(self._port))
         while True:
-            data, addr = self._sock_recv.recvfrom(1024) # buffer size is 1024 bytes
-            self._sock_send.sendto(data, (self._nb_ip, self._nb_port))
+            data, addr = self._sock_recv.recvfrom(header.PACKET_SIZE) # buffer size is 1024 bytes
+            self._sock_send.sendto(bytes(data), (self._nb_ip, self._nb_port))
             mylog.log("DEBUG: RELAYED - {} FROM - {} TO - {}".format(data, addr, (self._nb_ip, self._nb_port)))
         
         

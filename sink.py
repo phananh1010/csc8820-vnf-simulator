@@ -16,7 +16,7 @@ class Sink(relay.Relayer):
         mylog.log("LISTENING AT {} - {}".format(self._nb_ip, self._nb_port))  
         with open('sink.txt', 'a') as f:
             while True:
-                data, addr = self._sock_recv.recvfrom(1024) # buffer size is 1024 bytes
+                data, addr = self._sock_recv.recvfrom(header.PACKET_SIZE) # buffer size is 1024 bytes
                 logdat = "AT {} RECEIVED - {} FROM - {}".format(mylog.mtime(), data, addr)
                 mylog.log(logdat)
                 if int(data) % 100 == 0:

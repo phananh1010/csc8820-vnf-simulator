@@ -15,7 +15,7 @@ class Source(relay.Relayer):
         mylog.log(logdat)  
         with open('source.txt', 'a') as f:
             for i in range(N):
-                MESSAGE = str(i)
+                MESSAGE = '{0:0100d}'.format(i)
                 self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
 
                 if i % 100 == 0:
