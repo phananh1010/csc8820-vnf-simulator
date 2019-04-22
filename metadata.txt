@@ -11,4 +11,5 @@ Anhs-MacBook-Pro.local 5557 C1 SINK null -1
 Anhs-MacBook-Pro.local 6000 C1 SOURCE 131.96.131.78 6001
 Anhs-MacBook-Pro.local 6001 C1 RELAYER 131.96.131.193 6002
 Anhs-MacBook-Pro.local 6002 C1 RELAYER 131.96.131.78 6003
-Anhs-MacBook-Pro.local 6003 C1 SINK null -1
+Anhs-MacBook-Pro.local 6003 C1 RELAYER 131.96.131.193 6004
+Anhs-MacBook-Pro.local 6004 C1 SINK null -1
