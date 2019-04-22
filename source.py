@@ -19,7 +19,7 @@ class Source(relay.Relayer):
                 self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
 
                 if i % 100 == 0:
-                    print >> f, 'SEND {} {}'.format(mylog.mtime(), MESSAGE)     # Python 2.x
+                    print >> f, 'SEND {} {}'.format(mylog.mtime(), i)     # Python 2.x
                     f.flush()
             
         return
