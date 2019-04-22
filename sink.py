@@ -17,7 +17,7 @@ class Sink(relay.Relayer):
         with open('sink.txt', 'a') as f:
             while True:
                 data, addr = self._sock_recv.recvfrom(header.PACKET_SIZE) # buffer size is 1024 bytes
-                logdat = "AT {} RECEIVED - {} FROM - {}".format(mylog.mtime(), data, addr)
+                logdat = "AT {} RECEIVED - {} FROM - {}".format(mylog.mtime(), int(data), addr)
                 mylog.log(logdat)
                 print >> f, 'RECEIVE {} {}'.format(mylog.mtime(), int(data))     # Python 2.x
                 f.flush()

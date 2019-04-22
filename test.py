@@ -22,6 +22,6 @@ def start_service(step=100):
 def release_service(sim):
     sim.release_service()
     
-sim = create_service(5555)
-start_service()
+sim = create_service(6666)
+start_service(100000)
 release_service(sim)
