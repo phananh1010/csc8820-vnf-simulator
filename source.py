@@ -12,12 +12,13 @@ class Source(relay.Relayer):
     
     def send_packet(self, N):
         logdat = 'AT {} SENDING message to {} - {}'.format(mylog.mtime(), self._nb_ip, self._nb_port)
-        mylog.log(logdat)        
-        for i in range(N):
-            MESSAGE = str(i)
-            self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
-            
-            with open('source.txt', 'w') as f:
+        mylog.log(logdat)  
+        with open('source.txt', 'a') as f:
+            for i in range(N):
+                MESSAGE = str(i)
+                self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
+
+
                 print >> f, 'SEND {} {}'.format(mylog.mtime(), MESSAGE)     # Python 2.x
                 f.flush()
             
