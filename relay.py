@@ -4,6 +4,7 @@ import socket
 import header
 import mylog
 
+
 class Relayer(object):
     _buff = None
     _sock = None
@@ -24,8 +25,7 @@ class Relayer(object):
         self._sock_recv.bind((self._ip, self._port))
         
         self._sock_send = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-
+        
     
     def relay(self):
         mylog.log("LISTENING AT {}".format(self._port))

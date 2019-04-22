@@ -11,7 +11,7 @@ class Source(relay.Relayer):
         self._sock_send = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     
     def send_packet(self, N):
-        logdat = 'AT {} SENDING message to {} - {}'.format(mylog.mtime, self._nb_ip, self._nb_port)
+        logdat = 'AT {} SENDING message to {} - {}'.format(mylog.mtime(), self._nb_ip, self._nb_port)
         mylog.log(logdat)        
         for i in range(N):
             MESSAGE = str(i)
