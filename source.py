@@ -1,6 +1,7 @@
 import socket
 import relay
 import mylog
+import time
 
 class Source(relay.Relayer):
     _sock_send = None
@@ -17,9 +18,9 @@ class Source(relay.Relayer):
             for i in range(N):
                 MESSAGE = '{0:010}'.format(i)
                 self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
-
                 print >> f, 'SEND {} {}'.format(mylog.mtime(), i)     # Python 2.x
                 f.flush()
+                time.sleep(10)
             
         return
     
