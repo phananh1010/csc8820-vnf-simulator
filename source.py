@@ -20,7 +20,7 @@ class Source(relay.Relayer):
                 self._sock_send.sendto(MESSAGE, (self._nb_ip, self._nb_port))
                 print >> f, 'SEND {} {}'.format(mylog.mtime(), i)     # Python 2.x
                 f.flush()
-                time.sleep(10)
+                time.sleep(0.01)
             
         return
     
