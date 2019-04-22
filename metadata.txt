@@ -7,6 +7,3 @@ Anhs-MacBook-Pro.local 4571 C2 RELAYER 131.96.131.193 4569
 Anhs-MacBook-Pro.local 4569 C2 SINK null -1
 Anhs-MacBook-Pro.local 5555 C1 SOURCE 131.96.131.193 5556
 Anhs-MacBook-Pro.local 5556 C1 RELAYER null -1
-
-#assuming very simple placement gathering, distributed
-#get serivce chain examples form mart, to do the gatehring, distributed
