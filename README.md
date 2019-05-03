@@ -8,5 +8,4 @@ In this project, we deploy a framework to test various strategies for Virtual Ne
 The developed framework in this project will measure different criteria such as delay, bandwidth consumption, and CPU cost for each deployment strategies and verify the performance of our proposed deployment algorith.
 
 # How to use our program
-Prepare a webserver to host the file ```metadata.txt```. The server should serve at port 6789. Simplest way to configure a webserver is the following command:
-```python -m SimpleHTTPServer 6789``` 
+All the code to generate simulated data and visualization is in the file simulate_delay.ipynb. Simple start a jupyter notebook server and run line by line the Python code in this line to regenerate the result 
